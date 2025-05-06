@@ -1,0 +1,96 @@
+<div>
+  <nav class="navbar navbar-expand-sm b fixed-top" style="background-color: #363533">
+    <div>
+        <a class="navbar-brand title">POINT OF SALE</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav"  style="margin-left: 200px;">
+        <ul class="navbar-nav ml-auto"> 
+            <li class="nav-item" [routerLinkActive]="['active']" >
+                <a class="nav-link pt-2" [routerLink]="['/home']" href="#">Home</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/category']"  href="#">Category</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/product']"  href="#">Product</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/customers']" href="#">Customers</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/sales']" href="#">Sales</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['/users']"  href="#">Users</a>
+          </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['/pos']"  href="#">POS</a>
+          </li>
+          <li class="nav-item" style="padding-top: 7px; padding-left: 340px;">
+            <div style="margin-top: -9px;" ngbDropdown>
+              <label data-bs-toggle="dropdown" aria-expanded="false" type="submit"><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;{{name}}
+</label>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <button ngbDropdownItem (click)="showModal()">Change Password</button>
+                <button ngbDropdownItem (click)="logout()">Logout</button>
+              </div>
+            </div>
+          </li>
+       
+        
+        </ul>
+
+    </div>
+</nav>
+
+</div>
+
+
+
+<div bsModal #changePassowrdData="bs-modal" class="modal fade" id="changePasswordModal" role="dialog"
+  [config]="{backdrop: 'static'}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>Change Password</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="changePasswordForm">
+          <div class="d-flex">
+            <div class="col-lg-11 p-0">
+              <div class="row d-flex col-lg-12 m-0 p-0">
+                <div class="col-lg-12 p-2">
+                  <label>Current Password <span class="mandatory">*</span></label>
+                  <input class="form-control" formControlName="currentPassword" placeholder="Enter Current Passowrd"
+                    [ngClass]="{ 'is-invalid': (submitted || changePasswordForm.controls['currentPassword'].touched) && changePasswordForm.controls['currentPassword'].errors }">
+                  <div
+                    *ngIf="(submitted ||changePasswordForm.controls['currentPassword'].touched) && changePasswordForm.controls['currentPassword'].errors"
+                    class="invalid-feedback">
+                    <div *ngIf="changePasswordForm.controls['currentPassword'].errors?.['required']">Field Required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 p-2">
+                  <label>New Password <span class="mandatory">*</span></label>
+                  <input class="form-control" formControlName="newPassword" placeholder="Enter New Passowrd"
+                    [ngClass]="{ 'is-invalid': (submitted || changePasswordForm.controls['newPassword'].touched) && changePasswordForm.controls['newPassword'].errors }">
+                  <div
+                    *ngIf="(submitted ||changePasswordForm.controls['newPassword'].touched) && changePasswordForm.controls['newPassword'].errors"
+                    class="invalid-feedback">
+                    <div *ngIf="changePasswordForm.controls['newPassword'].errors?.['required']">Field Required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" [disabled]="!changePasswordForm.valid"
+          (click)="submit()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

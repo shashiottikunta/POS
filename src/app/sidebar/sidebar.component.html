@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="header">
+      Prutech Time Management System
+    </div >
+    <ul class="menu" *ngIf="role === 'Admin'">
+      <li>
+        <a class="btn" [routerLink]="['/admin-dashboard']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/allCutomerList']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Customer List</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/allCarownerList']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Car-Owner List</a>
+      </li>
+    </ul>
+    <ul class="menu" *ngIf="role === 'Car Owner'">
+      <li>
+        <a class="btn" [routerLink]="['/carowner-dashboard']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/addcar']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Add Car</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/car-list']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Cars List</a>
+      </li>
+    
+    </ul>
+    <ul class="menu" *ngIf="role === 'Customer'">
+      <li>
+        <a class="btn" [routerLink]="['/customer-dashboard']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/currentList']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Current Bookings</a>
+      </li>
+      <li>
+        <a class="btn" [routerLink]="['/previousList']" routerLinkActive="selected">
+          <i class="fas fa-tachometer-alt"></i>Previous Bookings</a>
+      </li>
+    
+    </ul>
+  </div>
+</div>

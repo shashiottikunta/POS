@@ -1,0 +1,235 @@
+<div class="container-fluid">
+    <!-- <div class="row">
+        <h5 style="color: grey;">Product</h5>
+    </div> -->
+
+    <div class="card" style="background-color: #C4CACA; margin-left: 36px">
+        <h5>Add Product</h5>
+        <div class="card-body">
+            <form [formGroup]="productForm">
+            <div class="row">
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Product Name</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Enter Product Name" formControlName="prodcut_name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Category</label>
+                    </div>
+                    <div class="col-md-7">
+                        <select type="text"  placeholder="Enter First Name" class="form-control" formControlName="category_id">
+                            <option value="">Select Category</option>
+                            <option *ngFor="let category of categoriesList" value="{{category.id}}">{{category.name}}</option>
+                           
+                            </select>                         </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Code</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Enter Code" formControlName="product_code" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label"></label>Price
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Enter Price" formControlName="purchase_price" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Sale Price</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Enter Sale Price" formControlName="sales_price" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Expiry Date</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Select Date" formControlName="expiry_date" [bsConfig]="bsConfig"  bsDatepicker class="form-control">
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-4 d-flex">
+                        <div class="col-md-4">
+                            <label  class="form-label">Discount</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" placeholder="Enter Discount" formControlName="discount" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-8 d-flex">
+                        <div class="col-md-2">
+                            <label  class="form-label">Description</label>
+                        </div>
+                        <div class="col-md-7">
+                            <textarea type="text" placeholder="Enter Description" formControlName="description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+              
+
+            </div>
+        </form>
+            <div class="mt-4 text-center">
+                <button type="button" class="btn btn-dark" (click)="submit()">Submit</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="card mt-4" style="background-color: #C4CACA; margin-left: 36px">
+        <h5>Product List</h5>
+        <div class="card-body">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <th scope="col">Sl.No</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Product Code</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of productsList ; let i = index">
+                            <th>{{i +1}}</th>
+                            <td>{{product?.prodcut_name}}</td>
+                            <td>{{product?.category?.name}}</td>
+                            <td>{{product?.product_code}}</td>
+                            <td>{{product?.expiry_date}}</td>
+                            <td>  <i class="fa fa-pencil-square-o"  type="submit"(click)="editProduct(product.id)" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+                   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div bsModal #productData="bs-modal" class="modal fade" id="productModal" role="dialog"
+[config]="{backdrop: 'static'}" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title"><strong>Update Product</strong></h4>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="productFormUpdate">
+        <div class="row">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Product Name</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text"  placeholder="Enter Product Name" formControlName="prodcut_name" class="form-control" >
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Category</label>
+                </div>
+                <div class="col-md-6">
+                    <select type="text"  placeholder="Enter First Name" class="form-control" formControlName="category_id">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of categoriesList" value="{{category.id}}">{{category.name}}</option>
+                       
+                        </select>                 </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Code</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="status" placeholder="Enter Code" formControlName="product_code" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="status" placeholder="Enter Price" formControlName="purchase_price" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Sale Price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="status" placeholder="Enter Sale Price "  formControlName="sales_price" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Discount</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="status" placeholder="Enter Discount "  formControlName="discount" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Status</label>
+                </div>
+                <div class="col-md-6">
+                    <select type="text"  placeholder="Enter First Name" class="form-control" formControlName="status">
+                        <option value="">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Available">Available</option>
+
+                        </select>                     
+                    </div>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-10 d-flex">
+                <div class="col-md-4">
+                    <label  class="form-label">Date</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Select Date" formControlName="expiry_date" [bsConfig]="bsConfig" [(bsValue)]="selectedDate" bsDatepicker class="form-control">
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark"  
+        (click)="update()">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+    </div>
+  </div>
+</div>
+</div>

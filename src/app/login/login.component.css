@@ -1,0 +1,23 @@
+.login {
+    height: 100vh;
+    background-color: #D9D9D9;
+    display: flex; /* Add this to make child elements flex items */
+}
+
+.imageCard {
+    background-image: url('../../assets/posLogin.png');
+    background-repeat: no-repeat;
+    background-size: fill; /* Adjust based on your preference */
+    width: 50%; /* Make it take half of the parent's width */
+    height: 70%; /* Make it take the full height of the parent */
+    border-top-left-radius: 15px; /* Adjust the radius as needed */
+    border-bottom-left-radius: 15px; /* Adjust the radius as needed */
+    border-top-right-radius: 15px; /* Adjust the radius as needed */
+    border-bottom-right-radius: 15px; 
+}
+
+.btn-dark-blue {
+    background-color: #001f3f; /* Replace with your preferred dark blue color code */
+    color: #ffffff; /* Set text color to contrast with the background */
+}
+

@@ -1,0 +1,138 @@
+<div class="container-fluid">
+    <!-- <div class="row">
+        <h5 style="color: grey;">POS</h5>
+    </div> -->
+<form [formGroup]="posForm">
+    <div class="card" style="background-color: #f1f3f3; margin-left: 36px">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Customer Phone No</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" placeholder="Enter Phone No" (focusout)="getDetails(this.posForm.get('phone')?.value)" formControlName="phone" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-8 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Customer Email</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" formControlName="email" placeholder="Enter Customer Email" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-8 d-flex">
+                    <div class="col-md-4">
+                        <label  class="form-label">Customer Name</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" formControlName="name" placeholder="Enter Customer Name" class="form-control">
+                    </div>
+                </div>
+            </div>
+         
+            <div class="mt-4 text-center">
+                <button type="button"   *ngIf="!hideAdd" class="btn btn-dark" (click)="submit()">Add</button>
+                <button type="button" *ngIf="hideAdd" class="btn btn-dark" (click)="submit()">Update</button>
+            </div>
+   
+            <div class="row">
+                <div class="col-md-12 d-flex pt-2">
+                    <div class="col-md-7">
+                        <input type="text"  (focusout)="getProductDetails(this.posForm.get('produce_code')?.value)" formControlName="produce_code" placeholder="Enter Product Code" class="form-control">
+                    </div>
+                    <div *ngIf="this.productsListArray.length > 0" class="  col-lg-3 text-end">
+                        <button type="button" class="btn btn-success"  (click)="generateInvoice()">Generate Invoice</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table mt-4" *ngIf="this.productsListArray.length > 0"  >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sl.No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Discout</th>
+                    <th scope="col">Finall Price</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productsListArray ; let i = index">
+                    <th>{{i+1}}</th>
+                    <td>{{product.prodcut_name}}</td>
+                    <td>{{product.category_name}}</td>
+                    <td>{{product.sales_price}}</td>
+                    <td>{{product.discount}}</td>
+                    <td> {{product.purchase_price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="text-end" *ngIf="this.productsListArray.length > 0" > 
+                <b>Total : {{this.total}}</b>
+              </div>
+        </div>
+    </div>
+</form>
+
+</div>
+
+
+<div bsModal #invoiceData="bs-modal" class="modal fade" id="invoiceData" role="dialog"
+[config]="{backdrop: 'static'}" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title"><strong>Generate Invoice</strong></h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12"> 
+            <b>Customer Name  : {{customerDetails?.name}}</b>
+            <br>
+        
+            <b>Customer Email : {{customerDetails?.email}}</b>
+            <br>
+            <b>Customer Phone : {{customerDetails?.phone}}</b>
+        </div>
+        <div class="col-lg-12"> 
+            <table class="table mt-4">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sl.No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Discout</th>
+                    <th scope="col">Finall Price</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let product of productsListArray ; let i = index">
+                  <th>{{i+1}}</th>
+                  <td>{{product.prodcut_name}}</td>
+                  <td>{{product.category_name}}</td>
+                  <td>{{product.sales_price}}</td>
+                  <td>{{product.discount}}</td>
+                  <td> {{product.purchase_price}}</td>
+                </tr>
+       
+              </tbody>
+              </table>
+
+        </div>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="submit()">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+    </div>
+  </div>
+</div>
+</div>

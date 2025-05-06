@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'ngx-toastr/toastr';
+
+.mandatory{
+    color: red;
+}
+
+.btn.selected {
+    background: #0f1010;
+    padding: 20px 30px;
+
+}
+input::placeholder {
+    color:gray;
+    font-size: small;
+}
+
+label{
+    font-size: small;
+}
+option{
+    font-size: small;
+}
+select{
+    color:gray;
+    font-size: small;
+}
+.card-header{
+    background-color: #878480;
+    color: white;
+    
+}
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .theme-green .bs-datepicker-head {
+    background-color: #151815 !important
+}

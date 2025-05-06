@@ -1,0 +1,45 @@
+.title {
+  font-size: 20px;
+  color: rgb(226, 225, 225);
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.dropdown {
+  color: white;
+}
+
+.nav-item.active {
+  background-color: gray;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+}
+
+.nav-item.active a {
+  color: white;
+  font-size: 13px;
+ 
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center; 
+}
+
+.nav-item {
+  margin-right: 5px; 
+}
+
+.nav-item.active {
+  padding: 0 0 0 0 px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 13px;
+
+}
+
+

@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- <h5 style="color: grey;">Sales</h5> -->
+    <div class="text-end">
+      <b>Totlal Sales :</b> $ {{totalSale}}
+    </div>
+  </div>
+  <div style="margin-left: 36px;">
+    <h6>Sales List</h6>
+    <div class="card-body" *ngFor="let sales of salesList">
+      <div class="card border">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <b>Name:</b> {{sales.customer_name}}
+            </div>
+            <div class="col-lg-4">
+              <b>Email:</b> {{sales.customer_email}}
+            </div>
+            <div class="col-lg-3">
+              <b>Phone:</b> {{sales.customer_phone}}
+            </div>
+            <div class="col-lg-1">
+              <b>Order Value:</b> {{sales.order_value}}
+            </div>
+            <div class="col-lg-1 text-end">
+              <i class="fa fa-eye" aria-hidden="true" type="submit" (click)="editSale(sales.invoice_id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+<div bsModal #salesData="bs-modal" class="modal fade" id="salesModal" role="dialog" [config]="{backdrop: 'static'}"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><strong>Customer Details</strong></h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div>
+                <!-- <b style="color: rgb(99, 97, 97); font-size: 15pxs;" class="d-block mb-2">Customer Id :</b> -->
+                <b style="color: rgb(99, 97, 97); font-size: 15pxs;" class="d-block mb-2">Customer Name : {{customerDetails?.customer_name}} </b>
+                <b style="color: rgb(99, 97, 97); font-size: 15pxs;" class="d-block mb-2">Customer Phone Number : {{customerDetails?.customer_phone}} </b>
+                <b style="color: rgb(99, 97, 97); font-size: 15pxs;" class="d-block mb-2">Customer Email Id :{{customerDetails?.customer_email}} </b> 
+              </div>
+            </div>
+            <div class="pt-2">
+              <p>Product Details</p>
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">SL.No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col"> Sale Price($)</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of customerDetails?.products ; let i = index">
+                    <th>{{i +1}}</th>
+                    <td>{{product?.product_name}}</td>
+                    <td>{{product?.product_code}}</td>
+                    <td>@{{product?.sales_price}}</td>
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-dark"  
+        (click)="update()">Update</button> -->
+        <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.custom-card {
+    width: 500px;
+    height: 300px;
+}
+.card-title{
+    color: rgb(146, 80, 19);
+    font-size: 19px;
+}
+
+.card-text{
+    color: rgb(114, 112, 110);
+    font-size: 16px;
+}
